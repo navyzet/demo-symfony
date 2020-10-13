@@ -1,0 +1,6 @@
+.dockerignore
+/var/cache/**
+/var/log/**
+/Dockerfile
+/.git/
+README.md
