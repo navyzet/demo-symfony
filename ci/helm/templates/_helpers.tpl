@@ -67,3 +67,17 @@ Create the database url
 {{- define "demo-symfony.databaseurl" -}}
 {{- printf "pgsql://%s:%s@%s-postgresql:5432/%s" .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword .Release.Name .Values.postgresql.postgresqlDatabase | b64enc }}
 {{- end }}
+
+{{/*
+Create the redis url
+*/}}
+{{- define "demo-symfony.redisurl" -}}
+{{- printf "redis://:%s@%s-redis-headless" .Values.redis.password .Release.Name | b64enc }}
+{{- end }}
+
+{{/*
+Create the redis sessions path
+*/}}
+{{- define "demo-symfony.redispath" -}}
+{{- printf "tcp://%s-redis-headless?auth=%s" .Release.Name .Values.redis.password | b64enc }}
+{{- end }}
