@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the database url
+*/}}
+{{- define "demo-symfony.databaseurl" -}}
+{{- printf "pgsql://%s:%s@%s-postgresql:5432/%s" .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword .Release.Name .Values.postgresql.postgresqlDatabase | b64enc }}
+{{- end }}
